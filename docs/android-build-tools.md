@@ -64,3 +64,29 @@ Necessary tools for APK patching (`apksigner`, `zipalign`)
                     apksigner.bat
                     zipalign.exe
             licenses/
+
+### Optional: Add Build Tools to Environment Variables
+
+1. Add `<root>/build-tools/34.0.0` to **Environment Variables**.
+
+2. Press `Win + S` and search for **Environment Variables**.
+
+3. Click **Edit the system environment variables**.
+
+4. In the System Properties window, click **Environment Variables…**
+
+5. Under **System variables**, find and select `Path`, then click **Edit**
+
+6. Click **New** and add the full path to your build-tools folder (replace `<root>` with your actual path): `<root>\build-tools\34.0.0`
+
+7. Click **OK** on all windows to save.
+
+8. Close and reopen your terminal (CMD / PowerShell / Terminal).
+
+9. Run the following commands to verify:
+
+        zipalign
+        apksigner
+
+
+

@@ -113,7 +113,9 @@ Decompile the APK
 apktool d "NieR Re[in]carnation 3.7.1.apk" -o patched
 ```
 Replace `100.x.x.x` with :
+
 For Tailscale users : Tailscale IP
+
 For Emulator users : `10.0.2.2`
 
 ```bash
