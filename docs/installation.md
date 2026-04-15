@@ -1,6 +1,10 @@
-# Installation
+Last updated: {{ git_revision_date_localized }}
 
+
+# Installation
+ All commands in this guide are run from cage/ unless stated otherwise. This guide is optimized for windows users planning to use anemulator for the game
 ## Folder Layout
+
 
 ```
 cage/
@@ -97,25 +101,36 @@ When done, `lunar-tear/server/assets/master_data/` should be filled with `Entity
 python3 lunar-scripts/patch_masterdata.py  --input lunar-tear/server/assets/release/20240404193219.bin.e
 ```
 
+> **Important:** This extends all content expiry dates inside the .bin.e so events, quests, and banners don't show as expired. It also empties the maintenance table so the game never shows a maintenance screen.
+
 ---
 
 ## Step 4 — Patch the APK
 
+Decompile the APK
+
 ```bash
 apktool d "NieR Re[in]carnation 3.7.1.apk" -o patched
 ```
+Replace `100.x.x.x` with :
+For Tailscale users : Tailscale IP
+For Emulator users : 10.0.2.2
 
 ```bash
 python3 lunar-scripts/patch_apk.py patched --server-ip 100.x.x.x --http-port 8080
 ```
+Rebuild the APK
 
 ```bash
 apktool b patched -o patched.apk
 ```
+ Generate a signing key (run one-time only)
+ *Skip this if you already have debug.keystore.*
 
 ```bash
 apksigner sign --ks debug.keystore --ks-pass pass:android patched.apk
 ```
+You now have patched.apk ready to install. 
 
 ---
 
@@ -125,6 +140,7 @@ apksigner sign --ks debug.keystore --ks-pass pass:android patched.apk
 cd lunar-tear/server
 make proto
 ```
+This generates Go code from the .proto files. Only needs to be done once.
 
 ---
 
@@ -135,10 +151,37 @@ cd lunar-tear/server
 go run ./cmd/lunar-tear --host 100.0.2.2 --http-port 8080 --scene 0
 ```
 
+Use `--scene x`  argument to skip over the undesired content.
+
+> **Important:** The server only saves your progress when you advance to a new story scene. Gacha pulls, purchases, and enhancements done between scene transitions are lost if the server shuts down before you reach the next checkpoint. This is a current limitation of the server.
+
+Leave the terminal open — the server must keep running while you play.
+
 ---
 
 ## Step 7 — Install and Play
 
+### Android phone or tablet (not tested personally)
+
+Install the Tailscale app from the Play Store (see [Tailscale Setup](#tailscale-setup)), then install the patched APK:
+
 ```bash
 adb install patched.apk
 ```
+
+Or transfer `patched.apk` to your phone and tap to install.
+
+### Android emulator (BlueStacks, MuMuPlayer...) - Tested
+
+Drag and drop `patched.apk` onto the emulator window, or:
+
+```bash
+adb connect 127.0.0.1:<emulator-adb-port>
+adb install patched.apk
+```
+
+Since the emulator runs on the same PC as the server, Tailscale isn't required for home use.
+
+> If you're using the emulator on a **different PC away from home**, install Tailscale on that PC and it will route through automatically.
+
+### Make sure the server is running before launching the game.

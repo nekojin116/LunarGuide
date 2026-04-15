@@ -18,3 +18,7 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - Tailscale Setup: tailscale-setup.md
+
+plugins:
+  - search
+  - git-revision-date-localized
