@@ -153,7 +153,7 @@ This generates Go code from the .proto files. Only needs to be done once.
 
 ```bash
 cd lunar-tear/server
-go run ./cmd/lunar-tear --host 100.0.2.2 --http-port 8080 --scene 0
+go run ./cmd/lunar-tear --host 10.0.2.2 --http-port 8080 --scene 0
 ```
 
 Use `--scene x`  argument to skip over the undesired content.
