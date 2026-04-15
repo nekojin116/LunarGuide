@@ -62,9 +62,9 @@ Open your terminal in cage/
 Create the required folders and copy the master data binary into place:
 
 ```bash
-mkdir -p lunar-tear/server/assets/release
-mkdir -p lunar-tear/server/assets/master_data
-mkdir -p lunar-tear/server/assets/revisions
+mkdir "lunar-tear/server/assets/release"
+mkdir "lunar-tear/server/assets/master_data"
+mkdir "lunar-tear/server/assets/revisions"
 ```
 
 Copy/move the `.bin.e` into the release folder (keep the original at the `cage` root untouched).
