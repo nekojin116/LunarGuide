@@ -128,7 +128,7 @@ Generate a signing key (run one-time only)
  *Skip this if you already have debug.keystore.*
 
 ```bash
-keytool -genkeypair -v -keystore client/debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+keytool -genkeypair -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
 ```
 Sign the APK 
 
