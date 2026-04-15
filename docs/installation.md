@@ -37,7 +37,7 @@ Install all of the following before starting (do remember to include them in you
 | **Python 3**                                      | https://python.org |
 | **Java (JDK)**                                    | https://adoptium.net |
 | **apktool**                                       | https://apktool.org |
-| **Android build tools** (`apksigner`, `zipalign`) | See [Android build tools](#android-build-tools)|
+| **Android build tools** (`apksigner`, `zipalign`) | See [Android build tools](android-build-tools.md#android-build-tools)|
 | **protoc**                                        | https://github.com/protocolbuffers/protobuf/releases |
 | Make                                              | https://sourceforge.net/projects/gnuwin32/files/make/3.81/make-3.81.exe/download |
 | Terminal                                          | https://apps.microsoft.com/detail/9n0dx20hk701 |
@@ -168,7 +168,7 @@ Leave the terminal open — the server must keep running while you play.
 
 ### Android phone or tablet (not tested personally)
 
-Install the Tailscale app from the Play Store (see [Tailscale Setup](#tailscale-setup)), then install the patched APK:
+Install the Tailscale app from the Play Store (see [Tailscale Setup](tailscale-setup.md#tailscale-setup)), then install the patched APK:
 
 ```bash
 adb install patched.apk

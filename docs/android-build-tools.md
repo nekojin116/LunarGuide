@@ -6,7 +6,7 @@ These are tools necessary for APK patching (apksigner, zipalign)
 Go to [Android Studio](https://developer.android.com/studio) website, scroll down to `Command line tools only` section.
 
 Download windows package.
-  ![](/docs/images/cmd_windows.png)
+  ![](images/cmd_windows.png)
 
 Extract downloaded zip. It will look like this:
 
@@ -45,7 +45,7 @@ root/
     cmdline-tools/
         latest/
             bin/   
-                sdkmanager.bat ← download tool
+                sdkmanager.bat
     build-tools/
         34.0.0/
             apksigner.bat
