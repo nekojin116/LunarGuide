@@ -19,6 +19,7 @@ nav:
   - Installation: installation.md
   - Tailscale Setup: tailscale-setup.md
   - Android Build Tools: android-build-tools.md
+  - Video Resources: video.md
 
 plugins:
   - search
