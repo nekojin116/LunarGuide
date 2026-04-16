@@ -2,7 +2,7 @@ Last updated: {{ git_revision_date_localized }}
 
 
 # Installation
- All commands in this guide are run from cage/ unless stated otherwise. This guide is optimized for windows users planning to use anemulator for the game
+ All commands in this guide are run from cage/ unless stated otherwise. This guide is optimized for windows users planning to use an emulator for the game.
 ## Folder Layout
 
 
@@ -37,7 +37,7 @@ Install all of the following before starting (do remember to include them in you
 | **Python 3**                                      | https://python.org |
 | **Java (JDK)**                                    | https://adoptium.net |
 | **apktool**                                       | https://apktool.org |
-| **Android build tools** (`apksigner`, `zipalign`) | Install Android Studio → SDK Manager → SDK Tools → "Android SDK Build-Tools" |
+| **Android build tools** (`apksigner`, `zipalign`) | See [Android build tools](android-build-tools.md#android-build-tools)|
 | **protoc**                                        | https://github.com/protocolbuffers/protobuf/releases |
 | Make                                              | https://sourceforge.net/projects/gnuwin32/files/make/3.81/make-3.81.exe/download |
 | Terminal                                          | https://apps.microsoft.com/detail/9n0dx20hk701 |
@@ -113,7 +113,9 @@ Decompile the APK
 apktool d "NieR Re[in]carnation 3.7.1.apk" -o patched
 ```
 Replace `100.x.x.x` with :
+
 For Tailscale users : Tailscale IP
+
 For Emulator users : `10.0.2.2`
 
 ```bash
@@ -169,7 +171,7 @@ Leave the terminal open — the server must keep running while you play.
 
 ### Android phone or tablet (not tested personally)
 
-Install the Tailscale app from the Play Store (see [Tailscale Setup](#tailscale-setup)), then install the patched APK:
+Install the Tailscale app from the Play Store (see [Tailscale Setup](tailscale-setup.md#tailscale-setup)), then install the patched APK:
 
 ```bash
 adb install patched.apk
