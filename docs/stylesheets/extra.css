@@ -71,8 +71,8 @@ body:has(.hero) {
   padding: 2.5rem 2rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 1.5rem;
-  background: rgba(0, 0, 0, 0.42);
-  backdrop-filter: blur(6px);
+  background:
+    linear-gradient(180deg, rgba(12, 12, 18, 0.84), rgba(6, 6, 10, 0.9));
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
 }
 
