@@ -1,18 +1,19 @@
-# LunarTears Install Guide
-
-This guide walks you through setting up the Lunar Tear private server for a specific dead game.
-
+---
+hide:
+  - navigation
+  - toc
 ---
 
-## Get Started
-<p align="center">
-  <img src="images/tears.jpg">
-</p>
+<div class="hero" markdown="1">
+  <div class="hero__content" markdown="1">
 
-### [Start Installation](installation.md)
+# Lunar Tear Installation Guide
 
----
+Private server setup documentation for NieR Re[in]carnation.
 
-## Community
-### Discord
-Join the [Discord Server](https://discord.gg/qwxXvTqpqT) for help and resources.
+[Start Installation](installation.md){ .md-button .md-button--primary }
+[Recommended Emulators](recommended-emulators.md){ .md-button }
+[Discord](https://discord.gg/qwxXvTqpqT){ .md-button }
+
+  </div>
+</div>
