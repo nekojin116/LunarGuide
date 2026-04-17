@@ -7,7 +7,7 @@ Last updated: {{ git_revision_date_localized }}
 
 ```
 cage/
-  lunar-tear/               ← server repo (https://gitlab.com/walter-sparrow-group/lunar-tear)
+  lunar-tear/               ← server repo (https://github.com/Walter-Sparrow/lunar-tear))
     server/
       assets/               ← game data
         master_data/        ← JSON tables dumped from .bin.e

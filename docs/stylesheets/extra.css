@@ -1,0 +1,145 @@
+@font-face {
+  font-family: "Bangle Normal";
+  src: url("../fonts/Bangle-Normal.ttf") format("truetype");
+  font-display: swap;
+}
+
+body:has(.hero) .md-main__inner {
+  max-width: none;
+  margin: 0;
+}
+
+body:has(.hero) .md-header,
+body:has(.hero) .md-header__inner,
+body:has(.hero) .md-tabs {
+  background: transparent;
+  box-shadow: none;
+}
+
+body:has(.hero) .md-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+body:has(.hero) .md-sidebar--primary,
+body:has(.hero) .md-sidebar--secondary {
+  display: none;
+}
+
+body:has(.hero) .md-content {
+  margin: 0;
+}
+
+body:has(.hero) .md-content__inner {
+  margin: 0;
+  padding: 0;
+}
+
+body:has(.hero) .md-content__inner::before {
+  display: none;
+}
+
+body:has(.hero) .md-container {
+  position: relative;
+  background-color: #050508;
+}
+
+body:has(.hero) {
+  background-color: #050508;
+}
+
+.hero {
+  min-height: calc(100dvh - 2.4rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 6rem 1.5rem 4rem;
+  text-align: center;
+  background:
+    linear-gradient(rgba(5, 5, 8, 0.45), rgba(5, 5, 8, 0.78)),
+    url("../images/tears.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.hero__content {
+  max-width: 46rem;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.5rem;
+  background: rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
+}
+
+.hero h1 {
+  margin: 0 0 1rem;
+  font-family: "Bangle Normal", "Roboto", sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+}
+
+.hero p {
+  margin: 0 0 2rem;
+  font-size: 1.1rem;
+}
+
+.hero .md-button {
+  margin: 0.35rem;
+}
+
+@media screen and (max-width: 76.2344em) {
+  .hero {
+    min-height: calc(100dvh - 2.8rem);
+  }
+}
+
+@media screen and (max-width: 44.9375em) {
+  .hero {
+    min-height: calc(100dvh - 2.8rem);
+    padding: 5rem 1rem 3rem;
+  }
+
+  .hero__content {
+    padding: 2rem 1.25rem;
+  }
+
+  .hero .md-button {
+    display: block;
+    margin: 0.5rem 0;
+  }
+}
+
+.md-source-file {
+  display: none;
+}
+
+.md-footer,
+.md-footer-meta {
+  background: transparent;
+}
+
+.md-footer-meta {
+  display: block;
+}
+
+body:has(.hero) .md-footer {
+  margin-top: -3.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.md-footer-meta__inner {
+  background: transparent;
+}
+
+body:has(.hero) .md-main {
+  background:
+    linear-gradient(rgba(5, 5, 8, 0.45), rgba(5, 5, 8, 0.78)),
+    url("../images/tears.jpg") no-repeat center bottom;
+  background-size: cover;
+}

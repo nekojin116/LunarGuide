@@ -2,6 +2,8 @@ site_name: Lunar Tear Installation Guide
 
 theme:
   name: material
+  logo: images/icon.webp
+  favicon: images/icon.webp
 
   palette:
     - scheme: slate
@@ -13,6 +15,13 @@ theme:
     - navigation.sections
     - search.highlight
     - content.code.copy
+
+markdown_extensions:
+  - md_in_html
+  - attr_list
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home: index.md
