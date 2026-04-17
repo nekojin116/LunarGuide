@@ -17,8 +17,11 @@ theme:
 nav:
   - Home: index.md
   - Installation: installation.md
-  - Tailscale Setup: tailscale-setup.md
   - Android Build Tools: android-build-tools.md
+  - Recommended Emulators: recommended-emulators.md
+  - Known Issues: known-issues.md
+  - Updating: updating.md
+  - Tailscale Setup: tailscale-setup.md
 
 plugins:
   - search

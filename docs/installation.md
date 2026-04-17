@@ -127,6 +127,8 @@ Rebuild the APK
 apktool b patched -o patched.apk
 zipalign -f -v 4 patched.apk patched_aligned.apk
 ```
+> **Important:** You won't need the patched.apk in the next steps
+
 Generate a signing key (run one-time only)
  *Skip this if you already have debug.keystore.*
 
@@ -136,9 +138,9 @@ keytool -genkeypair -v -keystore debug.keystore -alias androiddebugkey -storepas
 Sign the APK 
 
 ```bash
-apksigner sign --ks debug.keystore --ks-pass pass:android patched.apk
+apksigner sign --ks debug.keystore --ks-pass pass:android patched_aligned.apk
 ```
-You now have patched.apk ready to install. 
+You now have `patched_aligned.apk` ready to install. 
 
 ---
 
@@ -174,18 +176,20 @@ Leave the terminal open — the server must keep running while you play.
 Install the Tailscale app from the Play Store (see [Tailscale Setup](tailscale-setup.md#tailscale-setup)), then install the patched APK:
 
 ```bash
-adb install patched.apk
+adb install patched_aligned.apk
 ```
 
-Or transfer `patched.apk` to your phone and tap to install.
+Or transfer `patched_aligned.apk` to your phone and tap to install.
 
 ### Android emulator (BlueStacks, MuMuPlayer...) - Tested
 
-Drag and drop `patched.apk` onto the emulator window, or:
+Need help picking one? See [Recommended Emulators](recommended-emulators.md#recommended-emulators).
+
+Drag and drop `patched_aligned.apk` onto the emulator window, or:
 
 ```bash
 adb connect 127.0.0.1:<emulator-adb-port>
-adb install patched.apk
+adb install patched_aligned.apk
 ```
 
 Since the emulator runs on the same PC as the server, Tailscale isn't required for home use.
