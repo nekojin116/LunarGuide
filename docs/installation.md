@@ -79,17 +79,11 @@ Extract `resource_dump_android.7z` into `lunar-tear/server/assets/revisions/`.
 
 This decrypts the `.bin.e` and converts it into JSON files the server can read. Column names are resolved automatically from `lunar-scripts/schemas.json` — no external dependencies needed.
 
-To avoid an issue with Unicode, run this line first :
-
 ```bash
-$env:PYTHONUTF8 = 1
+set "PYTHONUTF8=1" && python3 lunar-scripts/dump_masterdata.py  --input lunar-tear/server/assets/release/20240404193219.bin.e --output lunar-tear/server/assets/master_data
 ```
 
-And then 
-
-```bash
-python3 lunar-scripts/dump_masterdata.py  --input lunar-tear/server/assets/release/20240404193219.bin.e --output lunar-tear/server/assets/master_data
-```
+> This is a CMD command. If you are using PowerShell (which you shouldn't), use `$env:PYTHONUTF8 = 1; ` instead of `set "PYTHONUTF8=1" && `.<br>Also, no need for any of this on Linux.
 
 When done, `lunar-tear/server/assets/master_data/` should be filled with `EntityM*.json` files.
 
