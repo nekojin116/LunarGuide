@@ -113,7 +113,7 @@ For Tailscale users : Tailscale IP
 
 For Emulator users : `10.0.2.2`
 
-```bash
+```
 python3 lunar-scripts/patch_apk.py patched --server-ip 100.x.x.x --http-port 8080
 ```
 Rebuild the APK
@@ -142,7 +142,7 @@ You now have `patched_aligned.apk` ready to install.
 
 ## Step 5 — Generate Server Code
 
-```bash
+```
 cd lunar-tear/server
 make proto
 ```
@@ -152,7 +152,7 @@ This generates Go code from the .proto files. Only needs to be done once.
 
 ## Step 6 — Run the Server
 
-```bash
+```
 cd lunar-tear/server
 go run ./cmd/lunar-tear --host 10.0.2.2 --http-port 8080 --scene 0
 ```
@@ -184,7 +184,7 @@ Need help picking one? See [Recommended Emulators](recommended-emulators.md#reco
 
 Drag and drop `patched_aligned.apk` onto the emulator window, or:
 
-```bash
+```
 adb connect 127.0.0.1:<emulator-adb-port>
 adb install patched_aligned.apk
 ```
