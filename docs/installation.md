@@ -70,7 +70,8 @@ Copy/move the `.bin.e` into the release folder (keep the original at the `cage` 
 
 Extract `resource_dump_android.7z` into `lunar-tear/server/assets/revisions/`. 
 
-Note : Only *Revision 0* is necessary currently so only extract folder 0 to save on space 
+!!! tip "Tip to save space"
+	Only *Revision 0* is currently necessary so you will be safe only extracting folder 0 to save on space!
 
 ---
 
@@ -100,7 +101,8 @@ When done, `lunar-tear/server/assets/master_data/` should be filled with `Entity
 python3 lunar-scripts/patch_masterdata.py  --input lunar-tear/server/assets/release/20240404193219.bin.e
 ```
 
-> **Important:** This extends all content expiry dates inside the .bin.e so events, quests, and banners don't show as expired. It also empties the maintenance table so the game never shows a maintenance screen.
+!!! question "Why?"
+	This extends all content expiry dates inside the .bin.e so events, quests, and banners don't show as expired.<br>It also empties the maintenance table so the game never shows a maintenance screen.
 
 ---
 
@@ -126,7 +128,8 @@ Rebuild the APK
 apktool b patched -o patched.apk
 zipalign -f -v 4 patched.apk patched_aligned.apk
 ```
-> **Important:** You won't need the patched.apk in the next steps
+!!! warning Warning
+	You won't need the patched.apk in the next steps
 
 Generate a signing key (run one-time only)
  *Skip this if you already have debug.keystore.*
@@ -162,7 +165,8 @@ go run ./cmd/lunar-tear --host 10.0.2.2 --http-port 8080 --scene 0
 
 Use `--scene x`  argument to skip over the undesired content.
 
-> **Important:** The server only saves your progress when you advance to a new story scene. Gacha pulls, purchases, and enhancements done between scene transitions are lost if the server shuts down before you reach the next checkpoint. This is a current limitation of the server.
+!!! abstract "Saving"
+	The server only saves your progress when you advance to a new story scene. Gacha pulls, purchases, and enhancements done between scene transitions are lost if the server shuts down before you reach the next checkpoint. This is a current limitation of the server.
 
 Leave the terminal open — the server must keep running while you play.
 
