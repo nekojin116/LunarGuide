@@ -28,29 +28,39 @@ cage/
 
 ## Prerequisites
 
-Install all of the following before starting (do remember to include them in your PATH, if the installers doesn't do it for you):
+Install the tools below before starting, and make sure they are available in your `PATH`.
 
-| Tool                                              | Where to get it |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Go 1.24+**                                      | https://go.dev |
-| **Python 3**                                      | https://python.org |
-| **Java (JDK)**                                    | https://adoptium.net |
-| **apktool**                                       | https://apktool.org |
-| **Android build tools** (`apksigner`, `zipalign`) | See [Android build tools](android-build-tools.md#android-build-tools)|
-| **protoc**                                        | https://github.com/protocolbuffers/protobuf/releases |
-| Make                                              | https://sourceforge.net/projects/gnuwin32/files/make/3.81/make-3.81.exe/download |
-| Terminal                                          | https://apps.microsoft.com/detail/9n0dx20hk701 |
+### Needed for Quick Start
 
-- Install the following dependencies
-
-```bash
-pip install pycryptodome msgpack lz4
-```
+| Tool         | Where to get it |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Go 1.24+** | [go.dev](https://go.dev) |
+| **protoc**   | [Protocol Buffers releases](https://github.com/protocolbuffers/protobuf/releases) |
+| Make         | [GnuWin32 Make 3.81](https://sourceforge.net/projects/gnuwin32/files/make/3.81/make-3.81.exe/download) |
 
 ```bash
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```
+
+### Needed for Manual Patching
+
+| Tool                                              | Where to get it |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Python 3**                                      | [python.org](https://python.org) |
+| **Java (JDK)**                                    | [Adoptium](https://adoptium.net) |
+| **apktool**                                       | [apktool.org](https://apktool.org) |
+| **Android build tools** (`apksigner`, `zipalign`) | See [Android build tools](android-build-tools.md#android-build-tools)|
+
+```bash
+pip install pycryptodome msgpack lz4
+```
+
+### Optional
+
+| Tool               | Where to get it |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Windows Terminal   | [Microsoft Store](https://apps.microsoft.com/detail/9n0dx20hk701) |
 
 ---
 
@@ -75,7 +85,24 @@ Extract `resource_dump_android.7z` into `lunar-tear/server/assets/revisions/`.
 
 ---
 
-## Step 2 — Dump the Master Data
+## Step 2 — APK and Data Patching
+
+### Quick Start
+
+1. Open `lunar_tear_patcher.ipynb` in [Google Colab](https://colab.research.google.com/).
+2. Paste your download URLs.
+3. Click `Run All`.
+4. Let the notebook handle everything:
+   dependencies, APK patching, master data patching, and file downloads.
+5. When the collab runs, it will give you `patched apk`, patched `.bin.e` and dumped json in `.zip`.
+6. Place the files in their folders:
+   `.bin.e` in `lunar-tear/server/assets/release`
+   Extract the `.zip` in `lunar-tear/server/assets/master_data`
+7. You can now skip to [Step 3](#step-3-generate-server-code).
+
+### Manual Patching
+
+#### Dump the Master Data
 
 This decrypts the `.bin.e` and converts it into JSON files the server can read. Column names are resolved automatically from `lunar-scripts/schemas.json` — no external dependencies needed.
 
@@ -87,9 +114,7 @@ set "PYTHONUTF8=1" && python3 lunar-scripts/dump_masterdata.py  --input lunar-te
 
 When done, `lunar-tear/server/assets/master_data/` should be filled with `EntityM*.json` files.
 
----
-
-## Step 3 — Patch the Master Data
+#### Patch the Master Data
 
 ```bash
 python3 lunar-scripts/patch_masterdata.py  --input lunar-tear/server/assets/release/20240404193219.bin.e
@@ -98,9 +123,7 @@ python3 lunar-scripts/patch_masterdata.py  --input lunar-tear/server/assets/rele
 !!! question "Why?"
 	This extends all content expiry dates inside the .bin.e so events, quests, and banners don't show as expired.<br>It also empties the maintenance table so the game never shows a maintenance screen.
 
----
-
-## Step 4 — Patch the APK
+#### Patch the APK
 
 Decompile the APK
 
@@ -140,7 +163,9 @@ You now have `patched_aligned.apk` ready to install.
 
 ---
 
-## Step 5 — Generate Server Code
+## Step 3 — Generate Server Code
+
+Open your terminal in `Cage` folder
 
 ```
 cd lunar-tear/server
@@ -150,14 +175,12 @@ This generates Go code from the .proto files. Only needs to be done once.
 
 ---
 
-## Step 6 — Run the Server
+## Step 4 — Run the Server
 
 ```
 cd lunar-tear/server
-go run ./cmd/lunar-tear --host 10.0.2.2 --http-port 8080 --scene 0
+go run ./cmd/lunar-tear --host 10.0.2.2 --http-port 8080 
 ```
-
-Use `--scene x`  argument to skip over the undesired content.
 
 !!! abstract "Saving"
 	The server only saves your progress when you advance to a new story scene. Gacha pulls, purchases, and enhancements done between scene transitions are lost if the server shuts down before you reach the next checkpoint. This is a current limitation of the server.
@@ -166,27 +189,24 @@ Leave the terminal open — the server must keep running while you play.
 
 ---
 
-## Step 7 — Install and Play
+## Step 5 — Install and Play
 
-### Android phone or tablet (not tested personally)
+### Android phone or tablet
 
 Install the Tailscale app from the Play Store (see [Tailscale Setup](tailscale-setup.md#tailscale-setup)), then install the patched APK:
 
-```bash
-adb install patched_aligned.apk
-```
+- For Quick-start method : transfer `patched.apk` to your phone and tap to install.
+- For Manual patching method : transfer `patched_aligned.apk` to your phone and tap to install.
 
-Or transfer `patched_aligned.apk` to your phone and tap to install.
-
-### Android emulator (BlueStacks, MuMuPlayer...) - Tested
+### Android emulator (BlueStacks, MuMuPlayer...) 
 
 Need help picking one? See [Recommended Emulators](recommended-emulators.md#recommended-emulators).
 
-Drag and drop `patched_aligned.apk` onto the emulator window, or:
+Drag and drop the `apk` onto the emulator window, or:
 
 ```
 adb connect 127.0.0.1:<emulator-adb-port>
-adb install patched_aligned.apk
+adb install patched.apk
 ```
 
 Since the emulator runs on the same PC as the server, Tailscale isn't required for home use.
