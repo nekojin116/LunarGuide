@@ -29,11 +29,10 @@ extra_css:
 nav:
   - Home: index.md
   - Installation: installation.md
-  - Android Build Tools: android-build-tools.md
+  - Android Tools and Tailscale: android-tools-and-tailscale.md
   - Recommended Emulators: recommended-emulators.md
   - Known Issues: known-issues.md
   - Updating: updating.md
-  - Tailscale Setup: tailscale-setup.md
   - Video Resources: video.md
 
 plugins:

@@ -34,9 +34,11 @@ Install the tools below before starting, and make sure they are available in you
 
 | Tool         | Where to get it |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Go 1.24+** | [go.dev](https://go.dev) |
+| **Go 1.25+** | [go.dev](https://go.dev) |
 | **protoc**   | [Protocol Buffers releases](https://github.com/protocolbuffers/protobuf/releases) |
 | Make         | [GnuWin32 Make 3.81](https://sourceforge.net/projects/gnuwin32/files/make/3.81/make-3.81.exe/download) |
+| Goose         | ``go install github.com/pressly/goose/v3/cmd/goose@latest`` |
+
 
 ```bash
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
@@ -50,7 +52,7 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 | **Python 3**                                      | [python.org](https://python.org) |
 | **Java (JDK)**                                    | [Adoptium](https://adoptium.net) |
 | **apktool**                                       | [apktool.org](https://apktool.org) |
-| **Android build tools** (`apksigner`, `zipalign`) | See [Android build tools](android-build-tools.md#android-build-tools)|
+| **Android build tools** (`apksigner`, `zipalign`) | See [Android build tools](android-tools-and-tailscale.md#android-build-tools)|
 
 ```bash
 pip install pycryptodome msgpack lz4
@@ -145,8 +147,8 @@ Rebuild the APK
 apktool b patched -o patched.apk
 zipalign -f -v 4 patched.apk patched_aligned.apk
 ```
-!!! warning Warning
-	You won't need the patched.apk in the next steps
+!!! warning "Note"
+    You won't need `patched.apk` in the next steps.
 
 Generate a signing key (run one-time only)
  *Skip this if you already have debug.keystore.*
@@ -183,7 +185,7 @@ go run ./cmd/lunar-tear --host 10.0.2.2 --http-port 8080
 ```
 
 !!! abstract "Saving"
-	The server only saves your progress when you advance to a new story scene. Gacha pulls, purchases, and enhancements done between scene transitions are lost if the server shuts down before you reach the next checkpoint. This is a current limitation of the server.
+    The game saves automatically. Any action that changes your progress is written to the database right away.
 
 Leave the terminal open — the server must keep running while you play.
 
@@ -193,7 +195,7 @@ Leave the terminal open — the server must keep running while you play.
 
 ### Android phone or tablet
 
-Install the Tailscale app from the Play Store (see [Tailscale Setup](tailscale-setup.md#tailscale-setup)), then install the patched APK:
+Install the Tailscale app from the Play Store (see [Tailscale Setup](android-tools-and-tailscale.md#tailscale-setup)), then install the patched APK:
 
 - For Quick-start method : transfer `patched.apk` to your phone and tap to install.
 - For Manual patching method : transfer `patched_aligned.apk` to your phone and tap to install.
@@ -213,4 +215,5 @@ Since the emulator runs on the same PC as the server, Tailscale isn't required f
 
 > If you're using the emulator on a **different PC away from home**, install Tailscale on that PC and it will route through automatically.
 
-### Make sure the server is running before launching the game.
+!!! warning "Before You Launch"
+    Make sure the server is running before launching the game.
